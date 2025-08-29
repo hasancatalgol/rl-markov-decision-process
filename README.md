@@ -19,9 +19,7 @@ A **Markov Decision Process (MDP)** formalizes sequential decision-making under 
 The defining property of a Markov process is **memorylessness**:  
 the future depends only on the present state, not on the past.
 
-\[
-P[S_{t+1} \mid S_t = s_t] \;=\; P[S_{t+1} \mid S_t = s_t, S_{t-1} = s_{t-1}, \dots, S_0 = s_0]
-\]
+$P[S_{t+1} \mid S_t = s_t] \;=\; P[S_{t+1} \mid S_t = s_t, S_{t-1} = s_{t-1}, \dots, S_0 = s_0]$
 
 * The next state depends only on the current state, not on previous ones.  
 * If a process satisfies this property, it is called a **Markov process**.
