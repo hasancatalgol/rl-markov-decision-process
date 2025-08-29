@@ -28,9 +28,8 @@ $P[S_{t+1} \mid S_t = s_t] \;=\; P[S_{t+1} \mid S_t = s_t, S_{t-1} = s_{t-1}, \d
 
 ## Formal MDP
 
-\[
-\mathcal{M} = (\mathcal{S},\mathcal{A}, P, R, \gamma)
-\]
+$\mathcal{M} = (\mathcal{S},\mathcal{A}, P, R, \gamma)$
+
 
 * $\mathcal{S}$: set of possible states  
 * $\mathcal{A}$: set of actions that can be taken  
@@ -40,8 +39,6 @@ $P[S_{t+1} \mid S_t = s_t] \;=\; P[S_{t+1} \mid S_t = s_t, S_{t-1} = s_{t-1}, \d
 
 **Objective**: maximize expected return
 
-\[
-G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.
-\]
+$G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
 
 ---
