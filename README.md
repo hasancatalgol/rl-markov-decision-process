@@ -42,3 +42,101 @@ $\mathcal{M} = (\mathcal{S},\mathcal{A}, P, R, \gamma)$
 $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
 
 ---
+
+## Markov Chain vs Markov Decision Process
+
+| Aspect | Markov Chain | Markov Decision Process |
+|--------|--------------|--------------------------|
+| **Actions** | ❌ none | ✅ agent chooses action |
+| **Rewards** | ❌ none | ✅ rewards linked to $(s,a)$ |
+| **Transition** | $P(s' \mid s)$ | $P(s' \mid s,a)$ |
+| **Objective** | Just describes dynamics | Optimize decisions for long-term reward |
+
+👉 **Markov chain = passive system** (just state transitions).  
+👉 **MDP = interactive system** (agent makes choices + gets feedback).  
+
+---
+
+## Types of Markov Decision Processes
+
+1. **Finite vs Infinite**  
+   * **Finite MDP** – The state space $\mathcal{S}$ and action space $\mathcal{A}$ are finite (countable).  
+     > Example: A grid-world maze where states are grid cells and actions are moves up/down/left/right.  
+   * **Infinite MDP** – Either the state or action space is infinite (often continuous).  
+     > Example: A robot navigating in continuous 2D space with continuous velocity choices.  
+
+   👉 Many real-world problems are infinite MDPs, but finite cases are simpler and used for theoretical analysis.
+
+2. **Episodic vs Continuing**  
+   * **Episodic tasks** – Interaction breaks into episodes with a start and a terminal state.  
+     > Example: Playing a game of chess or reaching the exit of a maze.  
+   * **Continuing tasks** – No natural terminal state; the process continues indefinitely.  
+     > Example: An automated stock trading agent that interacts with the market continuously.  
+
+   👉 Episodic MDPs are solved per episode, while continuing MDPs rely on discounting ($\gamma$) to ensure long-term rewards remain finite.
+
+3. **Trajectory vs Episode**  
+   * **Trajectory** – A sequence of states, actions, and rewards over time:  
+     $$(s_0, a_0, r_1, s_1, a_1, r_2, \dots)$$  
+   * **Episode** – A trajectory that **terminates** when a terminal state is reached.  
+
+   👉 All episodes are trajectories, but not all trajectories are complete episodes.
+
+4. **Reward vs Return**  
+   * **Reward ($r_t$)** – The immediate scalar feedback at time step $t$.  
+     > Example: −1 for each step in a maze.  
+   * **Return ($G_t$)** – The cumulative discounted reward starting from time $t$:  
+     $$G_t = \sum_{k=0}^\infty \gamma^k r_{t+k+1}$$  
+
+   👉 Rewards are **short-term signals**, while returns capture **long-term objectives**.
+
+5. **Discount Factor ($\gamma$)**  
+   * A number in the range $[0,1)$.  
+   * Determines how much future rewards are valued compared to immediate rewards.  
+   * Appears in the return definition:  
+     $$G_t = \sum_{k=0}^\infty \gamma^k r_{t+k+1}$$  
+
+   **Interpretation**:  
+   * $\gamma \approx 0$ → the agent is **myopic**, focusing almost only on immediate rewards.  
+   * $\gamma \approx 1$ → the agent is **far-sighted**, strongly considering long-term rewards.  
+
+   👉 Choosing $\gamma$ balances short-term vs long-term decision-making.
+
+6. **Policy ($\pi$)**  
+   * A **policy** defines the agent’s behavior: it maps states to actions.  
+   * Can be **deterministic**:  
+     $$\pi(s) = a$$  
+     (always picks the same action in a given state)  
+   * Or **stochastic**:  
+     $$\pi(a \mid s) = P[A_t = a \mid S_t = s]$$  
+     (gives a probability distribution over actions for each state)  
+
+   **Goal**:  
+   Find an **optimal policy** $\pi^*$ that maximizes the expected return.  
+
+   👉 The policy is the agent’s “strategy” for decision-making.
+
+7. **Value Functions**
+
+Value functions estimate how good it is to be in a state or to take an action, under a given policy $\pi$.
+
+* **State-value function** ($v_\pi(s)$):  
+  Expected return starting from state $s$, following policy $\pi$:  
+  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$  
+
+  👉 Answers: *“How good is it to be in this state?”*
+
+* **Action-value function** ($q_\pi(s,a)$):  
+  Expected return starting from state $s$, taking action $a$, and then following policy $\pi$:  
+  $$q_\pi(s,a) = \mathbb{E}_\pi \big[ G_t \mid S_t = s, A_t = a \big]$$  
+
+  👉 Answers: *“How good is it to take this action in this state?”*
+
+---
+
+**Key difference**:  
+- $v(s)$ evaluates **states**.  
+- $q(s,a)$ evaluates **state–action pairs**.  
+
+Both are central for learning and improving policies.
+
