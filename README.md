@@ -134,9 +134,20 @@ Value functions estimate how good it is to be in a state or to take an action, u
 
 ---
 
+### Bellman Equations
+
+These express the recursive relationship between values of states and state–action pairs.
+
+* **State-value (Bellman expectation equation):**  
+  $$v_\pi(s) = \sum_a \pi(a \mid s) \sum_{s',r} P(s',r \mid s,a) \big[ r + \gamma v_\pi(s') \big]$$  
+
+* **Action-value (Bellman expectation equation):**  
+  $$q_\pi(s,a) = \sum_{s',r} P(s',r \mid s,a) \big[ r + \gamma \sum_{a'} \pi(a' \mid s') q_\pi(s',a') \big]$$  
+
+---
+
 **Key difference**:  
 - $v(s)$ evaluates **states**.  
 - $q(s,a)$ evaluates **state–action pairs**.  
 
-Both are central for learning and improving policies.
-
+Both are central for learning and improving policies (e.g., Q-learning, value iteration).
