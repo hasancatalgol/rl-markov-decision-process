@@ -112,11 +112,11 @@ $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
      (gives a probability distribution over actions for each state)  
 
    **Goal**:  
-   Find an **optimal policy** $\pi^*$ that maximizes the expected return.  
+   Find an **optimal policy** π* that maximizes the expected return.  
 
    👉 The policy is the agent’s “strategy” for decision-making.
 
-   The optimal policy is denoted by $\pi^*$. One compact way to write it is:
+   The optimal policy is denoted by π*. One compact way to write it is:
    π* = argmax₍π₎ V^π  
    Equivalently, per-state in terms of action-value:
    π*(s) = argmax₍a₎ q*(s,a)
@@ -128,7 +128,7 @@ Value functions estimate how good it is to be in a state or to take an action, u
 * **State-value function** ($v_\pi(s)$):  
   Expected return starting from state $s$, following policy π:
 
-  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$
+  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$  
   
 
   👉 Answers: *“How good is it to be in this state?”*
