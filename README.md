@@ -117,9 +117,9 @@ $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
    👉 The policy is the agent’s “strategy” for decision-making.
 
    The optimal policy is denoted by π*. One compact way to write it is:
-   π* = argmax₍π₎ V^π  
+   <p><strong>π*</strong> = argmax<sub>π</sub> V<sup>π</sup></p>
    Equivalently, per-state in terms of action-value:
-   π*(s) = argmax₍a₎ q*(s,a)
+   <p><strong>π*</strong>(s) = argmax<sub>a</sub> q<sup>*</sup>(s,a)</p>
 
 7. **Value Functions**
 
@@ -128,7 +128,7 @@ Value functions estimate how good it is to be in a state or to take an action, u
 * **State-value function** ($v_\pi(s)$):  
   Expected return starting from state $s$, following policy π:
 
-  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$  
+  <p>v<sub>π</sub>(s) = E<sub>π</sub>[ G<sub>t</sub> | S<sub>t</sub> = s ]</p>  
   
 
   👉 Answers: *“How good is it to be in this state?”*
@@ -136,7 +136,7 @@ Value functions estimate how good it is to be in a state or to take an action, u
 * **Action-value function** ($q_\pi(s,a)$):  
   Expected return starting from state $s$, taking action $a$, and then following policy π:
   
-  $$q_\pi(s,a) = \mathbb{E}_\pi \big[ G_t \mid S_t = s, A_t = a \big]$$  
+  <p>q<sub>π</sub>(s,a) = E<sub>π</sub>[ G<sub>t</sub> | S<sub>t</sub> = s, A<sub>t</sub> = a ]</p>  
 
   👉 Answers: *“How good is it to take this action in this state?”*
 
