@@ -115,7 +115,7 @@ $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
    Find an **optimal policy** $\pi^*$ that maximizes the expected return.  
 
    👉 The policy is the agent’s “strategy” for decision-making.
-   
+
    The optimal policy is denoted by $\pi^*$. One compact way to write it is:
    $$\pi^* = \arg\max_{\pi} V^{\pi}$$
    Equivalently, per-state in terms of action-value:
@@ -126,13 +126,14 @@ $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
 Value functions estimate how good it is to be in a state or to take an action, under a given policy $\pi$.
 
 * **State-value function** ($v_\pi(s)$):  
-  Expected return starting from state $s$, following policy $\pi$:  
-  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$  
+  Expected return starting from state $s$, following policy π:
+  $$v_\pi(s) = \mathbb{E}_\pi \big[ G_t \mid S_t = s \big]$$
+  
 
   👉 Answers: *“How good is it to be in this state?”*
 
 * **Action-value function** ($q_\pi(s,a)$):  
-  Expected return starting from state $s$, taking action $a$, and then following policy $\pi$:  
+  Expected return starting from state $s$, taking action $a$, and then following policy π:
   $$q_\pi(s,a) = \mathbb{E}_\pi \big[ G_t \mid S_t = s, A_t = a \big]$$  
 
   👉 Answers: *“How good is it to take this action in this state?”*
