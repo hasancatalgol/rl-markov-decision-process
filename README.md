@@ -115,6 +115,11 @@ $G_0 = \sum_{t=0}^{\infty} \gamma^t r_{t+1}.$
    Find an **optimal policy** $\pi^*$ that maximizes the expected return.  
 
    👉 The policy is the agent’s “strategy” for decision-making.
+   
+   The optimal policy is denoted by $\pi^*$. One compact way to write it is:
+   $$\pi^* = \arg\max_{\pi} V^{\pi}$$
+   Equivalently, per-state in terms of action-value:
+   $$\pi^*(s) = \arg\max_{a} q^*(s,a)$$
 
 7. **Value Functions**
 
