@@ -159,3 +159,20 @@ These express the recursive relationship between values of states and state–ac
 - $q(s,a)$ evaluates **state–action pairs**.  
 
 Both are central for learning and improving policies (e.g., Q-learning, value iteration).
+
+8. **Exploration vs Exploitation**
+
+A fundamental dilemma in reinforcement learning is **exploration vs exploitation**:
+
+- **Exploration**: The agent tries new actions to discover their effects and potentially find better long-term rewards.  
+  Example: choosing an action that has not been tried often, even if its current estimated value is low.
+
+- **Exploitation**: The agent chooses the action that seems best according to its current knowledge (policy or value estimates).  
+  Example: repeatedly picking the action with the highest known expected reward.
+
+⚖️ Balancing the two is critical: too much exploitation may miss better strategies, while too much exploration may reduce short‑term rewards.
+
+Common strategies to handle this trade-off include:
+- **ε-greedy policy**: with probability ε, explore (random action), otherwise exploit (best-known action).
+- **Softmax action selection**: actions are chosen probabilistically, weighted by their estimated value.
+- **Upper Confidence Bound (UCB)**: prefers actions with high uncertainty in addition to high value.
