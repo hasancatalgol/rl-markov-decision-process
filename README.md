@@ -178,11 +178,11 @@ Common strategies to handle this trade-off include:
 - **Softmax action selection**: actions are chosen probabilistically, weighted by their estimated value.
 - **Upper Confidence Bound (UCB)**: prefers actions with high uncertainty in addition to high value.
 
-# Action Noise (“Slip”) — how we model stochasticity in this GridWorld
+## 9. Action Noise (“Slip”) — how we model stochasticity in this GridWorld
 
 We allow a **slip probability** $\varepsilon\in[0,1]$: you select action $a$, but the environment may execute a **different** action.
 
-## Transition model (concise)
+### Transition model (concise)
 If $s'_a$ is the deterministic next state from $(s,a)$ and $s'_b$ from $(s,b)$, then
 $$
 P_{\text{slip}}(s'\mid s,a)
@@ -191,12 +191,17 @@ P_{\text{slip}}(s'\mid s,a)
 $$
 Rewards are taken **on arrival**, i.e., from the resulting $s'$.
 
-## Risk-neutral values (what we compute)
+### Risk-neutral values (what we compute)
 We plan with **expected** returns, so values are **deterministic** given the MDP and policy:
 $$
 q_\pi(s,a)=\mathbb{E}\!\left[r+\gamma\,v_\pi(S')\mid s,a\right].
 $$
 
-## Not covered here (extensions)
+### Using slip in this project (UI)
+- Adjust **Slip probability** in **Settings** ($\varepsilon$).  
+- After applying, VI/PI recompute $V$ and the greedy policy under this stochastic model.  
+- Press **B** for per-state **policy bars** $\pi(a\mid s)$ (greedy tie mass) and **Q-value bars**; images save to `docs/plots/`.
+
+### Not covered here (extensions)
 - **Distributional RL:** track full return distributions $Z(s,a)$ (risk/variance).  
 - **Bayesian RL:** treat model parameters (e.g., slip) as uncertain and maintain a posterior.
