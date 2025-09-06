@@ -184,15 +184,18 @@ We allow a **slip probability** $\varepsilon\in[0,1]$: you select action $a$, bu
 
 ### Transition model (concise)
 If $s'_a$ is the deterministic next state from $(s,a)$ and $s'_b$ from $(s,b)$, then
+
 $$
-P_{\text{slip}}(s'\mid s,a)
+P_{\text{slip}}(s' \mid s,a)
 =(1-\varepsilon)\,\mathbf{1}[s'=s'_a]
-+\sum_{b\neq a}\frac{\varepsilon}{|\mathcal A|-1}\,\mathbf{1}[s'=s'_b].
++\sum_{b\neq a}\frac{\varepsilon}{|\mathcal{A}|-1}\,\mathbf{1}[s'=s'_b].
 $$
+
 Rewards are taken **on arrival**, i.e., from the resulting $s'$.
 
 ### Risk-neutral values (what we compute)
 We plan with **expected** returns, so values are **deterministic** given the MDP and policy:
+
 $$
 q_\pi(s,a)=\mathbb{E}\!\left[r+\gamma\,v_\pi(S')\mid s,a\right].
 $$
@@ -200,7 +203,6 @@ $$
 ### Using slip in this project (UI)
 - Adjust **Slip probability** in **Settings** ($\varepsilon$).  
 - After applying, VI/PI recompute $V$ and the greedy policy under this stochastic model.  
-- Press **B** for per-state **policy bars** $\pi(a\mid s)$ (greedy tie mass) and **Q-value bars**; images save to `docs/plots/`.
 
 ### Not covered here (extensions)
 - **Distributional RL:** track full return distributions $Z(s,a)$ (risk/variance).  
