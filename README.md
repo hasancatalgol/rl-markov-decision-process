@@ -7,8 +7,9 @@ A **Markov Decision Process (MDP)** formalizes sequential decision-making under 
 ## Core pieces (super short)
 
 * **Environment**: The world the agent interacts with (e.g., a grid maze).
-* **State (s)**: Information the agent uses to decide; a snapshot of the environment. *Markov* means the next state/reward depend only on the current $s,a$, not on the past.
-* **Action (a)**: A choice the agent can take in a state (discrete or continuous).
+* **State (s)**: Information the agent uses to decide; a snapshot of the environment. *Markov* means the next state/reward depend only on the current $s,a$, not on the  past.
+* **Action (a)**: A choice the agent can take in a state (discrete or continuous). Slip is considered as a chance your intended action executes differently
+  - **Slip (action noise):** with probability $\varepsilon$, the **executed** action may differ from the **selected** action. We model this by adjusting the transition model $P(s'\mid s,a)$ (see the “Slip” section for details and examples).
 * **Agent**: The decision-maker; follows a **policy** $\pi(a\mid s)$ mapping states to action probabilities.
 * **Reward (r)**: Immediate scalar feedback from the environment after an action.
 
@@ -176,3 +177,26 @@ Common strategies to handle this trade-off include:
 - **ε-greedy policy**: with probability ε, explore (random action), otherwise exploit (best-known action).
 - **Softmax action selection**: actions are chosen probabilistically, weighted by their estimated value.
 - **Upper Confidence Bound (UCB)**: prefers actions with high uncertainty in addition to high value.
+
+# Action Noise (“Slip”) — how we model stochasticity in this GridWorld
+
+We allow a **slip probability** $\varepsilon\in[0,1]$: you select action $a$, but the environment may execute a **different** action.
+
+## Transition model (concise)
+If $s'_a$ is the deterministic next state from $(s,a)$ and $s'_b$ from $(s,b)$, then
+$$
+P_{\text{slip}}(s'\mid s,a)
+=(1-\varepsilon)\,\mathbf{1}[s'=s'_a]
++\sum_{b\neq a}\frac{\varepsilon}{|\mathcal A|-1}\,\mathbf{1}[s'=s'_b].
+$$
+Rewards are taken **on arrival**, i.e., from the resulting $s'$.
+
+## Risk-neutral values (what we compute)
+We plan with **expected** returns, so values are **deterministic** given the MDP and policy:
+$$
+q_\pi(s,a)=\mathbb{E}\!\left[r+\gamma\,v_\pi(S')\mid s,a\right].
+$$
+
+## Not covered here (extensions)
+- **Distributional RL:** track full return distributions $Z(s,a)$ (risk/variance).  
+- **Bayesian RL:** treat model parameters (e.g., slip) as uncertain and maintain a posterior.
