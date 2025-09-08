@@ -161,6 +161,33 @@ These express the recursive relationship between values of states and state–ac
 
 Both are central for learning and improving policies (e.g., Q-learning, value iteration).
 
+
+* **Optimal state-value function** ($v_\*(s)$):  
+  The *best possible* value achievable from state $s$ under any policy.
+
+  $$v_\*(s) \;=\; \max_{\pi} \; v_\pi(s)$$
+
+  Equivalent Bellman optimality form:
+  $$v_\*(s) \;=\; \max_{a}\; \mathbb{E}\!\left[\, r_{t+1} + \gamma \, v_\*(S_{t+1}) \;\middle|\; S_t=s,\; A_t=a \right]$$
+
+  👉 Intuition: *“What’s the maximum achievable goodness of this state if I act optimally from now on?”*
+
+* **Optimal action-value function** ($q_\*(s,a)$):  
+  The *best possible* value when you take action $a$ in $s$ and then act optimally thereafter.
+
+  $$q_\*(s,a) \;=\; \max_{\pi} \; q_\pi(s,a)$$
+
+  Equivalent Bellman optimality form:
+  $$q_\*(s,a) \;=\; \mathbb{E}\!\left[\, r_{t+1} + \gamma \, \max_{a'} q_\*(S_{t+1}, a') \;\middle|\; S_t=s,\; A_t=a \right]$$
+
+  👉 Intuition: *“If I take this action now, how good can things get with optimal decisions afterward?”*
+
+**Useful relationships**
+
+- $$v_\*(s) \;=\; \max_{a} q_\*(s,a)$$
+- An optimal policy can be chosen greedily w.r.t. $q_\*$:
+  $$\pi_\*(s) \in \arg\max_{a} q_\*(s,a)$$
+
 8. **Exploration vs Exploitation**
 
 A fundamental dilemma in reinforcement learning is **exploration vs exploitation**:
